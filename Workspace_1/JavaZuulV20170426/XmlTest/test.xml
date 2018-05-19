@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<o>
+<address class="object">
+<city type="string">shanghai</city>
+<postcode type="number">100025</postcode>
+<street type="string"> Changjiang Road </street>
+</address>
+<blog type="string">http://cross.withiter.com</blog>
+<name type="string">Michael</name>
+</o>

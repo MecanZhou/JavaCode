@@ -1,0 +1,145 @@
+package psm.Models.BusinessModel;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import psm.Models.DB.ModelService;
+import psm.Models.DataModel.Model;
+import psm.Models.DataModel.ModelClass.Model_para_info;
+import psm.Models.DataModel.ModelClass.Para_info;
+
+public class ModelManage implements InterfaceModelManage 
+{
+    //[start] Fields
+	static List<Model> ModelList=new ArrayList<Model>();
+	//[end]
+	
+	//[start] Property
+	public static void setModelList(List<Model> ModelList_)
+	{
+		ModelList=ModelList_;
+	}
+	public static List<Model> getModelList()
+	{
+		return ModelList;
+	}
+
+	//[end]
+	 
+	/// <summary>
+    /// 获取模型库中所有模型的基本信息
+    /// </summary>
+    /// <param name="modelList">系统当前所用的模型库</param>
+	public void GetModelsBasicInfo(List<Model> modelList) throws SQLException
+     {
+         modelList.clear();
+         ResultSet rs = ModelService.GetModels(); //获取model_info中所有数据的缓存
+         if (rs!=null)
+         {
+             while (rs.next())   //遍历model_info的所有行
+             {
+                 Model model = new Model();
+                 model.Model_name = rs.getString("MODEL_NAME");
+                 model.Development_languages =rs.getString("Development_languages");
+                 model.Development_tools = rs.getString("Development_tools");
+                 //model.Doc_path = dr["MODEL_NAME"].ToString();
+                 model.Extens_from = rs.getString("Extens_from");
+                 model.Hava_doc =rs.getBoolean("Hava_doc");
+                 model.Hava_src =rs.getBoolean("Hava_src");
+                 model.Is_verified =rs.getBoolean("Is_verified");
+                 model.Model_class =rs.getString("Model_class");
+                 model.Model_level =rs.getString("Model_level");
+                 model.Model_version =rs.getString("Model_version");
+                 if (rs.getDate("Modified_time") != null)
+                 {
+                     model.Modified_time =rs.getDate("Modified_time");
+                 }
+                 model.Muid =rs.getInt("Muid");
+                 model.Publish_time =rs.getDate("Publish_time");
+                 model.Src_path =rs.getString("Src_path");
+                 modelList.add(model);
+             }
+         }
+     }
+
+	 
+	 public void GetModelsAllInfo(List<Model> modelList) throws SQLException
+     {
+         this.GetModelsBasicInfo(modelList);
+         for (Model model : modelList)
+         {
+             //查询model_cat
+//             DataTable dt_cat = new DataTable();
+//             dt_cat = ModelService.GetModelVerfi(model.Muid) ?? null;
+//             if (dt_cat.Rows.Count>0)
+//             {
+//                 foreach (DataRow item in dt_cat.Rows)
+//                 {
+//                     model.Model_category = item["model_category"].ToString();
+//                 }
+//             }
+
+             List<String> tableNames = new ArrayList<String>();
+
+             ResultSet rs_para =null;
+             tableNames.add("model_para_info");
+             tableNames.add("para_info");
+             rs_para = ModelService.GetModelInfo(model.Muid, tableNames);
+             
+             int count=0;//获取rs_para的行数
+             try{
+            	 while(rs_para.next()){
+            		 count+=1;
+            	 }
+             }catch (SQLException e1) {
+                 e1.printStackTrace();
+             }
+             
+             if (count > 0)
+             {
+                 while (rs_para.next())
+                 {
+                     Model_para_info model_para_info = new Model_para_info();
+                     model.Model_para_infoList.add(model_para_info);
+
+                     model_para_info.Muid =rs_para.getInt("Muid");
+                     model_para_info.Para_id =rs_para.getInt("mpid");
+                     model_para_info.Para_label =rs_para.getString("Para_label");
+                     //model_para_info.Para_type =rs.getInt("Para_type"); 
+                     model_para_info.Para_defa_value =rs_para.getString("Para_defa_value");
+
+                     Para_info para_info = new Para_info();
+                     model_para_info.Para_info_ = para_info;
+                     para_info.Muid =rs_para.getInt("Muid");
+                     para_info.Basic_type =rs_para.getString("Basic_type");
+                     para_info.Para_desc =rs_para.getString("Para_desc");
+                     para_info.Para_key =rs_para.getString("Para_key");
+                     para_info.Para_length =rs_para.getInt("Para_length");
+                 }
+             }
+         
+}
+
+	 /// <summary>
+     /// 提供一个克隆模型的方法
+     /// </summary>
+     /// <param name="model">供复制的初始模型</param>
+     /// <returns>克隆后的模型</returns>
+//     public static Model Clone(Model model)
+////     {
+////         Model modelNew = new Model();
+////
+////         MemoryStream ms = new MemoryStream();
+////         BinaryFormatter bf = new BinaryFormatter();
+////         bf.Serialize(ms, model);
+////         ms.Seek(0, 0);
+////         modelNew = (Model)bf.Deserialize(ms);
+////         ms.Close();
+////         
+////         return modelNew;
+//     }
+
+
+     }}

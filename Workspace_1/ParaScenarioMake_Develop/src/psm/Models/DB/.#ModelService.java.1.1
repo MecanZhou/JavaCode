@@ -1,0 +1,42 @@
+package psm.Models.DB;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+import javax.sql.RowSet;
+import javax.sql.rowset.CachedRowSet;
+
+import org.omg.CORBA.OBJ_ADAPTER;
+
+import com.sun.rowset.CachedRowSetImpl;
+
+public class ModelService {
+	public static ResultSet GetModels() throws SQLException{
+		 DBHelper dbHlp = new DBHelper("modeldb");
+         String strSql = "select * from model_info";
+         return dbHlp.ExecuteQuery(strSql);   //执行查询语句
+	}
+	
+	
+	public static void GetModelsAllInfo(){
+//		 DBHelper dbHlp = new DBHelper("modeldb");
+//         //下面是之前用的sql语句
+//         //string strSql = "select * from model_desc_info,model_program_info,model_para_info,model_interaction_info,para_info,interaction_info";
+//         String strSql = "select * from model_info,model_para_info,para_info";
+//         CachedRowSet crs = new CachedRowSetImpl();
+//         using (OleDbConnection conn = new OleDbConnection(DBHelper.connstr_modeldb))
+//         {
+//             OBJ_ADAPTER da = new OBJ_ADAPTER(strSql, conn);
+//             da.Fill(crs, "model_info");
+//             da.Fill(crs, "model_para_info");
+//             da.Fill(crs, "para_info");
+//             //da.Fill(ds, "para_info");
+//             //da.Fill(ds, "interaction_info");
+//             return crs;
+         }
+	
+	public static ResultSet GetModelInfo(int id,List<String> tableNames){
+		return null;
+	}
+	}

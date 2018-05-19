@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><Scenario>
+	<GlobalInfo>
+		<ScenarioID>42</ScenarioID>
+		<FederationName>test1516</FederationName>
+		<FOM>FOM.xml</FOM>
+	<Public_time>2014-11-19</Public_time><Modlfied_time>2014-11-19</Modlfied_time><SchemeAuthor>admin</SchemeAuthor><Count>2</Count></GlobalInfo>
+	<ModelInfo>
+	
+	<ModelExeConfig><FederateName>M1-A</FederateName><FOM/><Muid>91</Muid><MemberID>1</MemberID><ModelName>A</ModelName><MemberDLL>A.dll</MemberDLL><LocalSettingDesignator>1</LocalSettingDesignator><Timer/><IsTimeRegulating>1</IsTimeRegulating><IsTimeConstrained>1</IsTimeConstrained><Lookahead>1</Lookahead><PublishObjectClassName/><SubscribeObjectClassNames/><PublishInteractionClassNames/><SubscribeInteractionClassNames/><SynchronizationPoints/><InputSources/><OutputSources><OutputSource id="2-3543012"><Attribute>isOutput</Attribute></OutputSource></OutputSources><EventReceivers/><InitStates><Parameter><Label>Test</Label><Type1>array</Type1><Value>1000</Value></Parameter></InitStates><Display><OutputPara><Value/><Label>Test</Label><Key>m</Key><Length>0</Length></OutputPara></Display></ModelExeConfig><ModelExeConfig><FederateName>M2-B</FederateName><FOM/><Muid>92</Muid><MemberID>2</MemberID><ModelName>B</ModelName><MemberDLL>B.dll</MemberDLL><LocalSettingDesignator>1</LocalSettingDesignator><Timer/><IsTimeRegulating>1</IsTimeRegulating><IsTimeConstrained>1</IsTimeConstrained><Lookahead>1</Lookahead><PublishObjectClassName/><SubscribeObjectClassNames/><PublishInteractionClassNames/><SubscribeInteractionClassNames/><SynchronizationPoints/><InputSources><InputSource id="1-1274184"><Attribute>isOutput</Attribute><Location>1</Location></InputSource></InputSources><OutputSources/><EventReceivers/><InitStates><Parameter><Label>Test</Label><Type1>array</Type1><Value>0/0</Value></Parameter></InitStates><Display><InputPara><Key>m</Key><Length>0</Length><Value/><Label>Test</Label></InputPara><OutputPara><Value/><Label>Test</Label><Key>m</Key><Length>0</Length></OutputPara></Display></ModelExeConfig></ModelInfo>
+</Scenario>

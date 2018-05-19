@@ -1,0 +1,45 @@
+package psm.Models.DataModel;
+import java.awt.*;
+import java.util.*;
+import java.util.List;
+
+import javax.swing.JLabel;
+
+
+public class PictureOfMember 
+{
+	
+	public String Id; //图片标示
+	public String Name;
+	public JLabel lableImage; //图片来源
+	public Point LogicalLocation; //图片逻辑显示位置
+
+	public int ImageWidth;
+	public int ImageHeight;
+	public boolean logicalIsActive; //图片逻辑选中
+   	public Rectangle[] LogicalRect;
+   	public Cursor SelectCursor;//选中后鼠标的状态
+   	public List<Line> LineList;
+   
+   	public int oldX = -999;
+   	public int oldY = -999;
+   	
+   	public static int count = 0;
+   	public int type;        //区别放大缩小的情况
+   	
+   	public JLabel label1=new JLabel();
+   	public List<JLabel> JLabelList=new ArrayList<JLabel>();
+   	public PictureOfMember()
+   	{
+   		SelectCursor = new Cursor(Cursor.CROSSHAIR_CURSOR );
+   		LogicalLocation = new Point();
+   		ImageWidth=70;
+   		ImageHeight=70;
+   		LogicalRect = new Rectangle[8];
+   		LineList = new ArrayList<Line>();
+   		Name = "" + count;
+   		label1.setText(Name);
+   		count++;
+   		JLabelList.add(label1);
+   	}
+}

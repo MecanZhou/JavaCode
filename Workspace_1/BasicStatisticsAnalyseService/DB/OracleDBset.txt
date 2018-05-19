@@ -1,0 +1,6 @@
+ServerIP
+172.16.73.88
+username
+root
+password
+root

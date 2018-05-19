@@ -1,0 +1,8 @@
+ServerIP
+localhost
+username
+admin
+password
+root
+database
+weka_data

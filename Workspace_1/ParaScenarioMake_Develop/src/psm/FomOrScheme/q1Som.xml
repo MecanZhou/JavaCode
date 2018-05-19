@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><Scenario>
+	<GlobalInfo>
+		<ScenarioID>7</ScenarioID>
+		<FederationName>q1</FederationName>
+		<FOM>FOM.xml</FOM>
+	<Public_time>2014-11-19</Public_time><Modlfied_time>2014-11-19</Modlfied_time><SchemeAuthor>admin</SchemeAuthor><Count>1</Count></GlobalInfo>
+	<ModelInfo>
+	
+	<ModelExeConfig><FederateName>M1-控制器</FederateName><FOM/><Muid>35</Muid><MemberID>1</MemberID><ModelName>控制器</ModelName><MemberDLL>/model/35/defFbkAttCtrl_Param_bm_3_3.dll</MemberDLL><LocalSettingDesignator/><IsTimeRegulating>1</IsTimeRegulating><IsTimeConstrained>1</IsTimeConstrained><Lookahead>1</Lookahead><PublishObjectClassName/><SubscribeObjectClassNames/><PublishInteractionClassNames/><SubscribeInteractionClassNames/><SynchronizationPoints/><InputSources/><OutputSources/><EventReceivers/><InitStates><Parameter><Label>速度控制增益</Label><Type1>array</Type1><Value>400</Value></Parameter><Parameter><Label>位置控制增益</Label><Type1>array</Type1><Value>100</Value></Parameter></InitStates><Display><InputPara><Key/><Length>0</Length><Value/><Label>本体姿态MRP</Label></InputPara><InputPara><Key/><Length>0</Length><Value/><Label>本体姿态角速度</Label></InputPara><OutputPara><Value/><Label>控制力矩</Label><Key/><Length>0</Length></OutputPara></Display></ModelExeConfig></ModelInfo>
+</Scenario>

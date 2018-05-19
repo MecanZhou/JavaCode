@@ -1,0 +1,172 @@
+package psm.Models.BusinessModel;
+
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.Toolkit;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.dnd.DropTarget;
+import java.awt.dnd.DropTargetDragEvent;
+import java.awt.dnd.DropTargetDropEvent;
+import java.awt.dnd.DropTargetEvent;
+import java.awt.dnd.DropTargetListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.io.IOException;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import psm.Views.FrmMain;
+
+import sun.awt.RepaintArea;
+
+
+public class DragAndDropDropTargetListener implements DropTargetListener 
+{
+
+	private MouseMotionListener l;
+	private int MouseChickX;
+	private int MouseChickY;
+	private Point point_top_left,point_top_right,point_lower_left,point_lower_right;
+	PropertyManage propretyChange=new PropertyManage();
+	@Override
+	public void dragEnter(DropTargetDragEvent arg0)
+	{
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void dragExit(DropTargetEvent arg0)
+	{
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	
+	public void dragOver(DropTargetDragEvent arg0) 
+	{
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void drop(DropTargetDropEvent e)
+	{
+        Transferable t = e.getTransferable();
+        String s = "";
+         try 
+         {
+             if( t.isDataFlavorSupported( DataFlavor.stringFlavor ) )
+             {
+                s = t.getTransferData( DataFlavor.stringFlavor  ).toString();
+             }
+         } 
+         catch( IOException ioe ) 
+         {
+            ioe.printStackTrace();
+         } 
+         catch( UnsupportedFlavorException ufe )
+         {
+            ufe.printStackTrace();
+         }
+        System.out.println(s);
+        DropTarget dt = (DropTarget)e.getSource();
+        /*
+        JTextArea d = ( JTextArea )dt.getComponent();
+         if( s != null && s.equals( "" ) == false ) {
+            d.append( s + " ");
+        }
+        */
+        JPanel panel_1=(JPanel)dt.getComponent();
+        final JLabel label1=new JLabel();
+        label1.setText(s);
+        label1.setBounds(e.getLocation().x, e.getLocation().y, 90, 90);
+        
+        
+/*        try {
+			if(s=="虚拟模型"){label1.set}
+		} catch ( e2) {
+			// TODO: handle exception
+		}*/
+/*        final JButton newbutton=new JButton();
+        newbutton.setText(s);
+        newbutton.setBounds(e.getLocation().x, e.getLocation().y, 90, 40);*/
+        label1.addMouseListener(new MouseListener() //鼠标操作模型的监听
+        {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) 
+			{
+				// TODO Auto-generated method stub
+				MouseChickX=e.getX();//当鼠标点击模型进行移动时记录点击坐标
+				MouseChickY=e.getY();
+				propretyChange.tableMemberChange(e) ;//当点击Label空间的时候，属性栏发生变换
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		label1.addMouseMotionListener(new MouseMotionListener()//鼠标移动模型的监听
+		{
+			private boolean MouseClickCheck=true;	
+			public void mouseDragged(MouseEvent e) 
+			{
+				// TODO Auto-generated method stub
+				if(MouseClickCheck)
+				{
+					label1.setLocation(label1.getLocation().x+(e.getX()-MouseChickX), label1.getLocation().y+(e.getY()-MouseChickY));
+				}	
+			}
+
+	
+			public void mouseMoved(MouseEvent e) 
+			{
+				// TODO Auto-generated method stub
+				
+			}
+		});
+
+		panel_1.add(label1);
+		panel_1.repaint();
+        
+	}
+
+	@Override
+	public void dropActionChanged(DropTargetDragEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	
+
+}

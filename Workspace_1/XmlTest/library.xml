@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><library>
+<book ISBN="00001">000001</book>
+<book ISBN="00002">
+<bookName>C++</bookName>
+</book>
+<book0>00000<name>Java</name>
+<name1>math</name1>
+</book0>
+</library>

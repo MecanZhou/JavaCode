@@ -1,0 +1,31 @@
+<psm.Models.DataModel.Model>
+  <Muid>77</Muid>
+  <Model_name>HairCut</Model_name>
+  <Model_version>1</Model_version>
+  <Publish_time>2014-09-13</Publish_time>
+  <Modified_time>2014-09-13</Modified_time>
+  <Development_languages></Development_languages>
+  <Development_tools></Development_tools>
+  <Model_intro></Model_intro>
+  <Model_sponsor></Model_sponsor>
+  <Hava_src>false</Hava_src>
+  <Hava_doc>false</Hava_doc>
+  <Is_verified>false</Is_verified>
+  <Target_access>public</Target_access>
+  <Model_catList/>
+  <Model_desc_paraList/>
+  <Model_para_infoList>
+    <psm.Models.DataModel.ModelClass.Model_para_info>
+      <Mpid>264</Mpid>
+      <Muid>77</Muid>
+      <Para_type>init_para</Para_type>
+      <Para_defa_value>0</Para_defa_value>
+      <Para_label></Para_label>
+      <Para_physicsunit></Para_physicsunit>
+      <Basic_type>integer</Basic_type>
+      <Para_length>0</Para_length>
+      <Para_desc></Para_desc>
+    </psm.Models.DataModel.ModelClass.Model_para_info>
+  </Model_para_infoList>
+  <Model_interaction_infoList/>
+</psm.Models.DataModel.Model>
