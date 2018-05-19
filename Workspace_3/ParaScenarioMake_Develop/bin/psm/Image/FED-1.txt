@@ -1,0 +1,8 @@
+(FED
+  (Federation TEST)  
+  (FEDversion v1.3)
+  (spaces)
+  (objects
+    (class ObjectRoot   
+      (attribute privilegeToDeleteObject reliable receive)
+      (class RTIprivate)

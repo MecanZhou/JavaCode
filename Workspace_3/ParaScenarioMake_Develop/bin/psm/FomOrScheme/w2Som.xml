@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><Scenario>
+	<GlobalInfo>
+		<ScenarioID>7</ScenarioID>
+		<FederationName>w2</FederationName>
+		<FOM>FOM.xml</FOM>
+	<Public_time>2014-11-19</Public_time><Modlfied_time>2014-11-19</Modlfied_time><SchemeAuthor>admin</SchemeAuthor><Count>2</Count></GlobalInfo>
+	<ModelInfo>
+	
+	<ModelExeConfig><FederateName>M1-Plane4</FederateName><FOM/><Muid>83</Muid><MemberID>1</MemberID><ModelName>Plane4</ModelName><LocalSettingDesignator/><IsTimeRegulating>1</IsTimeRegulating><IsTimeConstrained>1</IsTimeConstrained><Lookahead>1</Lookahead><PublishObjectClassName/><SubscribeObjectClassNames/><PublishInteractionClassNames/><SubscribeInteractionClassNames/><SynchronizationPoints/><InputSources/><OutputSources/><EventReceivers/><Display><InputPara><Key>1</Key><Length>0</Length><Value>F|100|1000|1500</Value><Label>初始坐标</Label></InputPara><OutputPara><Value>F|100|1000|1500</Value><Label>初始坐标</Label><Key>1</Key><Length>0</Length></OutputPara></Display><InitStates><Parameter><Label>初始坐标</Label><Type1>array</Type1><Value>100</Value></Parameter></InitStates></ModelExeConfig><ModelExeConfig><FederateName>M2-Plane3</FederateName><FOM/><Muid>82</Muid><MemberID>2</MemberID><ModelName>Plane3</ModelName><LocalSettingDesignator/><IsTimeRegulating>1</IsTimeRegulating><IsTimeConstrained>1</IsTimeConstrained><Lookahead>1</Lookahead><PublishObjectClassName/><SubscribeObjectClassNames/><PublishInteractionClassNames/><SubscribeInteractionClassNames/><SynchronizationPoints/><InputSources/><OutputSources/><EventReceivers/><Display><InputPara><Key>1</Key><Length>0</Length><Value>300</Value><Label>初始坐标</Label></InputPara><OutputPara><Value>E|200|500|2000</Value><Label>初始坐标</Label><Key>1</Key><Length>0</Length></OutputPara></Display><InitStates><Parameter><Label>初始坐标</Label><Type1>array</Type1><Value>E|200|500|2000</Value></Parameter></InitStates></ModelExeConfig></ModelInfo>
+</Scenario>

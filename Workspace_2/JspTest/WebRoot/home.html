@@ -1,0 +1,93 @@
+﻿<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>联系我们</title>
+	<style type="text/css">
+		*{margin:0;padding: 0;}
+		body{height: 100%;width: 100%;
+			background: url(images/bg.jpg) no-repeat;
+			margin: 0 auto;padding: 0;font-family:"微软雅黑";font-size: 16px;
+			}
+		#header{margin: 0;padding: 0;
+			height: 100px;width: 100%;
+			background-color: #666666;
+			color: #FF9933;border-style:solid ;border-color: #FF9933;
+		}
+		h1{margin: 30px 0 0 0;padding:0;
+		}
+		#main{margin: 100px auto;padding:0;position: relative;
+			height: 350px;width: 100%;color:#FFF;background:#666666;
+			font-family:"微软雅黑";font-size: 16px;		
+		}
+		#text{margin:10px auto;padding: 0;border: none;
+				width: 200px;height: 20px;color:#FFF;
+				font-family:"微软雅黑";font-size: 16px;
+		}
+		#button{margin: 30px 50px;padding: 10px 20px;border: none;
+				color: #FFF;background-color: #FF9933;
+		}
+		tr{font-family:"微软雅黑";font-size: 16px;color:#FFF;
+			margin:5px 0;padding: 0;
+		}
+		#footer{text-align:center;background-color:#666666;opacity:0.4;
+				clear:both;padding:10px 10px;margin:0 auto;color: black;
+		}
+	</style>
+    
+	</head>
+
+	<body onLoad="disptime()">
+		<center>
+			<div id="header">
+				<h1 align="center">联系我们</h>
+			</div>
+			<div id="main">
+				<table border="1" align="center" bordercolor="#FF9933" width="500px">
+                	<tr><th>姓名</th>
+                    	<td><input type="text" size="20" maxlength="20" id="text"/></td>
+                    </tr>
+                    <tr><th>生日</th>
+                    	<td><input type="text" size="20" maxlength="8" id="text"/></td>
+                    </tr>
+                    <tr><th>兴趣</th>
+                    	<td>唱歌&nbsp;<input type="checkbox"/>&nbsp;
+                       		打球&nbsp;<input type="checkbox"/>&nbsp;
+                            旅游&nbsp;<input type="checkbox"/>&nbsp;
+                        </td>
+                    </tr>
+                    <tr><th>性别</th>
+                    	<td>男&nbsp;<input type="radio" value="0" checked="checked"/>&nbsp;
+                       		女&nbsp;<input type="radio" value="1" />&nbsp;
+                        </td>
+                    </tr>
+                    <tr><th>学历</th>
+                    	<td><select>
+                        	<option>专科</option>
+                            <option selected="selected">本科</option>
+                            <option>硕士</option>
+                            <option>博士</option>
+                            <option>其他</option>
+                        </select>
+                        </td>
+                    </tr>
+                    <tr><th>寄语</th>
+                    	<td><textarea cols="50" rows="5">
+                        期待与您相识！
+                        </textarea>
+                        </td>
+                    </tr>
+                    <tr><td colspan="2" align="center">
+                    	<input type="submit" value="提交" id="button"/>
+                        <input type="reset" value="重置" id="button"/>
+                        </td>
+                    </tr>
+                </table>
+			</div>
+			<div id="footer">
+				<p>江汉大学数学与计算机科学学院</p>
+				<p>HTML/CSS/JavaScript期末大作业</p>
+				<p>&copy;Copyright&nbsp;&nbsp;&nbsp;&nbsp;学号：142208100119&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;姓名：周茂根&nbsp;&nbsp;</p>
+			</div>
+		</center>
+	</body>
+</html>

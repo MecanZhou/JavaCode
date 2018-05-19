@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<script type="text/javascript"> 
+var VoiceObj = new ActiveXObject("Sapi.SpVoice"); 
+function SpeakText() {
+    var my_test =  'cctv每日晚7点30在综合频道、新闻频道直播今天的《新闻联播》;直播今天的视频尽在中央电视台';
+    VoiceObj.volume=100;    //  '音量1~100
+    VoiceObj.rate=0;        //    '講話速率-10~10
+    VoiceObj.Speak(my_test);
+}
+
+</script>
+<body>    
+<button onclick="SpeakText();">Reading</button>
+</body>
+</html>

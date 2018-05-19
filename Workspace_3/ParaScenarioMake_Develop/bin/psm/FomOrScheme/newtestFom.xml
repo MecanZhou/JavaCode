@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><objectModel xmlns="http://www.sisostds.org/schemas/IEEE1516-2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sisostds.org/schemas/IEEE1516-2010 http://www.sisostds.org/schemas/IEEE1516-DIF-2010.xsd">
+  <modelIdentification>
+    <name>FOM.xml</name>
+    <type>FOM</type>
+    <version>3.0</version>
+    <modificationDate>2013-3-6</modificationDate>
+    <securityClassification>Undefined</securityClassification>
+    <purpose>Test</purpose>
+    <applicationDomain>Simulation</applicationDomain>
+    <description>Undefined</description>
+    <poc>
+      <pocType>Primary author</pocType>
+      <pocName>BIT-231</pocName>
+      <pocOrg>BIT</pocOrg>
+      <pocTelephone>13488861409</pocTelephone>
+      <pocEmail>yuyin@bit.edu.cn</pocEmail>
+    </poc>
+    <reference>
+      <type>Text</type>
+      <identification>http://www.dmso.mil/index.php?page=72</identification>
+    </reference>
+    <reference>
+      <type>Converted From</type>
+      <identification>Chat.xml</identification>
+    </reference>
+  </modelIdentification>
+  <objects>
+    <objectClass>
+      <name>HLAobjectRoot</name>
+      <objectClass>
+        <name>Model</name>
+        <sharing>PublishSubscribe</sharing>
+        <attribute>
+          <name>ModelID</name>
+          <dataType>HLAinteger32BE</dataType>
+          <updateType>Static</updateType>
+          <updateCondition>NA</updateCondition>
+          <ownership>NoTransfer</ownership>
+          <sharing>PublishSubscribe</sharing>
+          <transportation>HLAreliable</transportation>
+          <order>TimeStamp</order>
+        </attribute>
+        <attribute>
+          <name>ModelName</name>
+          <dataType>HLAunicodeString</dataType>
+          <updateType>Static</updateType>
+          <updateCondition>NA</updateCondition>
+          <ownership>NoTransfer</ownership>
+          <sharing>PublishSubscribe</sharing>
+          <transportation>HLAreliable</transportation>
+          <order>TimeStamp</order>
+        </attribute>
+        <attribute>
+          <name>ModelSimulationTime</name>
+          <dataType>HLAunicodeString</dataType>
+          <updateType>Conditional</updateType>
+          <updateCondition>Changed</updateCondition>
+          <ownership>NoTransfer</ownership>
+          <sharing>PublishSubscribe</sharing>
+          <transportation>HLAreliable</transportation>
+          <order>TimeStamp</order>
+        </attribute>
+        <attribute>
+          <name>ModelOutput</name>
+          <dataType>HLAPortValueMap</dataType>
+          <updateType>Conditional</updateType>
+          <updateCondition>Changed</updateCondition>
+          <ownership>NoTransfer</ownership>
+          <sharing>PublishSubscribe</sharing>
+          <transportation>HLAreliable</transportation>
+          <order>TimeStamp</order>
+        </attribute>
+
+      <objectClass ID="1"><Name>Model1</Name><Attribute>isOutput</Attribute></objectClass><objectClass ID="2"><Name>Model2</Name><Attribute>isOutput</Attribute></objectClass><objectClass ID="3"><Name>Model3</Name><Attribute>isOutput</Attribute></objectClass><objectClass ID="4"><Name>Model4</Name><Attribute>isOutput</Attribute></objectClass></objectClass>
+    </objectClass>
+  </objects>
+  <interactions>
+    <interactionClass>
+      <name>HLAinteractionRoot</name>
+      <interactionClass>
+        <name>Start</name>
+        <sharing>PublishSubscribe</sharing>
+        <transportation>HLAreliable</transportation>
+        <order>Receive</order>
+        <!--<semantics>Simulation Start</semantics>-->
+        <parameter>
+          <name>TimeScaleFactor</name>
+          <dataType>HLAfloat64BE</dataType>
+          <!--<semantics>How fast will the simulation run compared to real time. Example: 1.0= real time, 2.0 indicates that the simulation runs at twice the speed.</semantics>-->
+        </parameter>
+      </interactionClass>
+      <interactionClass>
+        <name>Stop</name>
+        <sharing>PublishSubscribe</sharing>
+        <transportation>HLAreliable</transportation>
+        <order>Receive</order>
+        <!--<semantics>Simulation Stop</semantics>-->
+      </interactionClass>
+      <interactionClass>
+        <name>Quit</name>
+        <sharing>PublishSubscribe</sharing>
+        <transportation>HLAreliable</transportation>
+        <order>Receive</order>
+      </interactionClass>
+      <interactionClass>
+        <name>ReplyStart</name>
+        <sharing>PublishSubscribe</sharing>
+        <transportation>HLAreliable</transportation>
+        <order>Receive</order>
+        <parameter>
+          <name>ModelID</name>
+          <dataType>HLAinteger32BE</dataType>
+        </parameter>
+      </interactionClass>
+      <interactionClass>
+        <name>ReplyStop</name>
+        <sharing>PublishSubscribe</sharing>
+        <transportation>HLAreliable</transportation>
+        <order>Receive</order>
+        <parameter>
+          <name>ModelID</name>
+          <dataType>HLAinteger32BE</dataType>
+        </parameter>
+      </interactionClass>
+      <interactionClass>
+        <name>ChangeTimeScale</name>
+        <sharing>PublishSubscribe</sharing>
+        <transportation>HLAreliable</transportation>
+        <order>Receive</order>
+        <parameter>
+          <name>TimeScaleFactor</name>
+          <dataType>HLAfloat64BE</dataType>
+        </parameter>
+      </interactionClass>
+      <interactionClass>
+        <name>ModelEvent</name>
+        <sharing>PublishSubscribe</sharing>
+        <dimensions>
+          <dimension>EventReceiverID</dimension>
+        </dimensions>
+        <transportation>HLAreliable</transportation>
+        <order>TimeStamp</order>
+        <semantics>仿真模型事件交互类</semantics>
+        <parameter>
+          <name>EventName</name>
+          <dataType>HLAunicodeString</dataType>
+        </parameter>
+        <parameter>
+          <name>EventSender</name>
+          <dataType>HLAinteger32BE</dataType>
+        </parameter>
+        <parameter>
+          <name>EventParameter</name>
+          <dataType>HLAPortValueMap</dataType>
+        </parameter>
+      </interactionClass>
+      <interactionClass>
+        <name>AdjustModelParameters</name>
+        <sharing>PublishSubscribe</sharing>
+        <dimensions>
+          <dimension>ModelID</dimension>
+        </dimensions>
+        <transportation>HLAreliable</transportation>
+        <order>Receive</order>
+        <semantics>调节模型参数</semantics>
+        <parameter>
+          <name>ModelParameters</name>
+          <dataType>HLAPortValueMap</dataType>
+        </parameter>
+      </interactionClass>
+    </interactionClass>
+  </interactions>
+  <dimensions>
+    <dimension>
+      <name>EventReceiverID</name>
+      <dataType>HLAinteger32BE</dataType>
+      <upperBound>1000</upperBound>
+      <normalization>undefined</normalization>
+      <value>[1..1000)</value>
+    </dimension>
+    <dimension>
+      <name>ModelID</name>
+      <dataType>HLAinteger32BE</dataType>
+      <upperBound>1000</upperBound>
+      <normalization>undefined</normalization>
+      <value>[1..1000)</value>
+      <semantics>模型ID</semantics>
+    </dimension>
+  </dimensions>
+  <time>
+    <timeStamp>
+      <dataType>HLAfloat64Time</dataType>
+    </timeStamp>
+    <lookahead>
+      <dataType>HLAfloat64Interval</dataType>
+    </lookahead>
+  </time>
+  <synchronizations>
+    <synchronizationPoint>
+      <label>Ready</label>
+      <dataType>NA</dataType>
+      <capability>RegisterAchieve</capability>
+    </synchronizationPoint>
+  </synchronizations>
+  <transportations/>
+  <switches>
+    <autoProvide isEnabled="true"/>
+    <conveyRegionDesignatorSets isEnabled="false"/>
+    <conveyProducingFederate isEnabled="false"/>
+    <attributeScopeAdvisory isEnabled="false"/>
+    <attributeRelevanceAdvisory isEnabled="false"/>
+    <objectClassRelevanceAdvisory isEnabled="false"/>
+    <interactionRelevanceAdvisory isEnabled="false"/>
+    <serviceReporting isEnabled="false"/>
+    <exceptionReporting isEnabled="false"/>
+    <delaySubscriptionEvaluation isEnabled="false"/>
+    <automaticResignAction resignAction="CancelThenDeleteThenDivest"/>
+  </switches>
+  <dataTypes>
+    <basicDataRepresentations/>
+    <simpleDataTypes/>
+    <enumeratedDataTypes/>
+    <arrayDataTypes>
+      <arrayData>
+        <name>HLAPortValueMap</name>
+        <dataType>HLAPortValueRec</dataType>
+        <cardinality>Dynamic</cardinality>
+        <encoding>HLAvariableArray</encoding>
+        <!--<semantics>type of model input/output/initilize parameter</semantics>-->
+      </arrayData>
+    </arrayDataTypes>
+    <fixedRecordDataTypes>
+      <fixedRecordData>
+        <name>HLAPortValueRec</name>
+        <encoding>HLAfixedRecord</encoding>
+        <!--<semantics>The element type of the inport/outport/intial parameter map in a simulation model.</semantics>-->
+        <field>
+          <name>PortKey</name>
+          <dataType>HLAunicodeString</dataType>
+          <!--<semantics>Label and distinct the port</semantics>-->
+        </field>
+        <field>
+          <name>Value</name>
+          <dataType>HLAopaqueData</dataType>
+          <!--<semantics>the value of the port</semantics>-->
+        </field>
+      </fixedRecordData>
+    </fixedRecordDataTypes>
+    <variantRecordDataTypes/>
+  </dataTypes>
+</objectModel>

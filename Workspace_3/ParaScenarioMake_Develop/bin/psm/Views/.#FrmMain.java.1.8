@@ -1,0 +1,812 @@
+package psm.Views;
+import java.awt.EventQueue;
+import java.awt.Frame;
+
+import javax.swing.JFrame;
+import java.awt.BorderLayout;
+import javax.swing.JTabbedPane;
+
+import javax.swing.BorderFactory;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
+import javax.swing.JTree;
+import javax.swing.JButton;
+import javax.swing.JToolBar;
+import javax.swing.ImageIcon;
+
+import javax.swing.JPanel;
+import javax.swing.JSplitPane;
+import javax.swing.JLabel;
+
+
+import javax.swing.Timer;
+
+import java.awt.Color;
+import java.awt.dnd.DnDConstants;
+import java.awt.dnd.DragSource;
+import java.awt.dnd.DropTarget;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
+import java.text.SimpleDateFormat;
+
+
+
+import java.util.Date;
+
+import javax.swing.border.TitledBorder;
+import javax.swing.UIManager;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.text.Document;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.JScrollPane;
+import javax.swing.border.LineBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.JTextField;
+
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+
+import psm.Controls.FrmMainManage;
+import psm.Controls.InterfaceFrmMainManage;
+import psm.Controls.PanelFormulaBasicInfoManage;
+import psm.Models.BusinessModel.DragAndDropDragGestureListener;
+import psm.Models.BusinessModel.DragAndDropDropTargetListener;
+import psm.Models.BusinessModel.PropertyManage;
+import psm.Models.BusinessModel.TabPageLogicalStructureManage;
+import psm.Models.DataModel.Formula;
+import javax.swing.event.TreeSelectionListener;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.SwingConstants;
+import javax.swing.JTextArea;
+import java.awt.Font;
+
+
+public class FrmMain extends JFrame{
+
+	public JFrame frame;
+	JButton btnSaveFormula;
+	JSplitPane splitPane = new JSplitPane();
+	JSplitPane splitPane_2 = new JSplitPane();
+	JLabel timeLab = new JLabel("\u5C31\u7EEA");
+	public static JTable table;
+	JTextField JTFFormulaName= new JTextField();
+	private JTextField JTFFormulaAuthor;
+	private JTextField JTFFormulaGoal;
+	private JTextArea JTFFormulaOutline;
+	private JTextArea JTFFormulaScale;
+	JPanel panelFormulaBasicInfo = new JPanel();
+	JPanel panelFormula = new JPanel();
+	JTree treeModel = new JTree();
+	JTree treeFormula = new JTree();
+	JPanel panelLogicalStructure = new JPanel();
+	private TabPageLogicalStructureManage tabPageLogicalStructureManage;
+	PropertyManage propretyChange=new PropertyManage();
+	
+    DefaultMutableTreeNode dragTreeNode = null;   
+    
+    InterfaceFrmMainManage frmMainManage;
+    PanelFormulaBasicInfoManage panelFormulaBasicInfoManage;
+    
+	public void getTime(){
+		 final SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss E");
+
+		 Timer timer = new Timer(1000, new ActionListener(){
+		     @Override public void actionPerformed(ActionEvent e){
+		    	 timeLab.setText(formatter.format(new Date()));
+
+		     }
+		 });
+		 timer.setRepeats(true);
+		 timer.start();
+	 }
+	
+	 public void panelLogicalStructure_MouseRelease()
+     {
+		 final TabPageLogicalStructureManage tabPageLogicalStructureManage=new TabPageLogicalStructureManage();
+		 panelLogicalStructure.addMouseListener(new MouseAdapter(){
+		 public void mouseReleased(MouseEvent e){
+			 tabPageLogicalStructureManage.DoShowRightMenu(e);
+		   }
+		 });
+            
+     }
+	 
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+		  
+			public void run() {
+				try {
+					FrmMain window = new FrmMain();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	public void show(){
+		FrmDeployModel  window = new FrmDeployModel();
+		 window.frame.setVisible(true);
+		
+	}
+	
+	
+	public FrmMain() {
+		initialize();
+		FrmMainLoad();
+		
+	}
+	
+	//[start] MenuAndTool Action
+	//保存方案
+    public void btnSaveFormula_Action()
+    {
+    	//frmMainManage.DoSaveFormula(frame);
+    }
+    
+    public void btnPublish_Action()
+    {
+    	frmMainManage.DoPublishFormula();
+    }
+	//[end]
+	
+    //[start] PanelFormulaBasicInfo Action
+    public void panelFormulaName_Action()
+    {
+    	panelFormulaBasicInfoManage.DoPlFormulaName_Action(JTFFormulaName.getText());
+    }
+    
+    public void panelFormulaAuthor_Action()
+    {
+    	panelFormulaBasicInfoManage.DoPlFormulaAuthor_Action(JTFFormulaAuthor.getText());
+    }
+    
+    public void panelFormulaGoal_Action()
+    {
+    	panelFormulaBasicInfoManage.DoPlFormulaGoal_Action(JTFFormulaGoal.getText());
+    }
+    
+    public void panelFormulaScale_Action()
+    {
+    	panelFormulaBasicInfoManage.DoPlFormulaScale_Action(JTFFormulaScale.getText());
+    }
+    
+    public void panelFormulaOutline_Action()
+    {
+    	panelFormulaBasicInfoManage.DoPlFormulaOutline_Action(JTFFormulaOutline.getText());
+    }
+    //[end]
+    
+	//[start] Functions
+	//加载主界面
+	public void FrmMainLoad()
+	{
+		//初始化工具
+		frmMainManage=new FrmMainManage();
+		panelFormulaBasicInfoManage=new PanelFormulaBasicInfoManage();
+		//初始化Model树
+		JTreeModel_Load();
+		//初始化方案树
+		JTreeFormula_Load();
+		//设置拖拽源，目标，连接
+		DragAndDrop();
+		//获取系统时间
+		getTime();
+		//右键快捷键弹窗
+		panelLogicalStructure_MouseRelease();
+	}
+	
+	//初始化模型树
+	public void JTreeModel_Load()
+	{
+		DefaultMutableTreeNode root=new DefaultMutableTreeNode("模型库");
+		
+		DefaultMutableTreeNode virtualModel=new DefaultMutableTreeNode("虚拟模型");
+		root.add(virtualModel);
+		
+		DefaultMutableTreeNode combineMember=new DefaultMutableTreeNode("组合成员");
+		root.add(combineMember);
+		
+		DefaultMutableTreeNode system=new DefaultMutableTreeNode("系统级");
+		root.add(system);
+		
+		DefaultMutableTreeNode subSystem=new DefaultMutableTreeNode("子系统级");
+		root.add(subSystem);
+		
+		DefaultMutableTreeNode device=new DefaultMutableTreeNode("设备级");
+		root.add(device);
+		
+		DefaultMutableTreeNode eventGenerator=new DefaultMutableTreeNode("事件发生器");
+		device.add(eventGenerator);
+		
+		DefaultMutableTreeNode controller=new DefaultMutableTreeNode("控制器");
+		device.add(controller);
+		
+		DefaultMutableTreeNode actuator=new DefaultMutableTreeNode("执行器");
+		device.add(actuator);
+		
+		DefaultMutableTreeNode controlledObject=new DefaultMutableTreeNode("被控对象");
+		device.add(controlledObject);
+		
+		DefaultMutableTreeNode sensor=new DefaultMutableTreeNode("敏感器");
+		device.add(sensor);
+		
+		DefaultTreeModel model=new DefaultTreeModel(root);
+		treeModel.addTreeSelectionListener(new TreeSelectionListener() {
+			public void valueChanged(TreeSelectionEvent e) {
+				propretyChange.tableModelChange(e) ;//当点击Label空间的时候，属性栏发生变换
+			}
+		});
+		treeModel.setModel(model);
+		
+		for(int i=0; i<treeModel.getRowCount(); i++)
+	    {
+			treeModel.expandRow(i);
+		}
+	}
+	
+	//初始化方案树
+	public void JTreeFormula_Load()
+	{
+		//设置根节点
+		DefaultMutableTreeNode rootNode=new DefaultMutableTreeNode("新建预案");
+		
+		DefaultMutableTreeNode basicInfoNode=new DefaultMutableTreeNode("方案基本信息");
+		rootNode.add(basicInfoNode);
+		
+		DefaultMutableTreeNode nameNode=new DefaultMutableTreeNode("方案名称");
+		basicInfoNode.add(nameNode);
+		
+		DefaultMutableTreeNode goalNode=new DefaultMutableTreeNode("设计目的");
+		basicInfoNode.add(goalNode);
+		
+		DefaultMutableTreeNode authorNode=new DefaultMutableTreeNode("方案作者");
+		basicInfoNode.add(authorNode);
+		
+		DefaultMutableTreeNode scaleNode=new DefaultMutableTreeNode("方案规模");
+		basicInfoNode.add(scaleNode);
+		
+		DefaultMutableTreeNode outlineNode=new DefaultMutableTreeNode("概述");
+		basicInfoNode.add(outlineNode);
+		
+		//方案空间结构	
+		DefaultMutableTreeNode spaceStructureNode=new DefaultMutableTreeNode("方案的空间结构");
+		rootNode.add(spaceStructureNode);
+		
+		//方案逻辑结构	
+		DefaultMutableTreeNode logicalStructureNode=new DefaultMutableTreeNode("方案的空间结构");
+		rootNode.add(logicalStructureNode);
+		
+		//方案成员
+		DefaultMutableTreeNode memberNode=new DefaultMutableTreeNode("方案成员");
+		rootNode.add(memberNode);
+		
+		DefaultTreeModel model_formula=new DefaultTreeModel(rootNode);
+		treeFormula.setModel(model_formula);
+		
+		for(int i=0; i<treeFormula.getRowCount(); i++)
+	    {
+			treeFormula.expandRow(i);
+		}
+	}
+	
+	//设置拖拽源
+	public void DragAndDrop()
+	{
+		//设置拖拽源
+        DragSource dragSource = DragSource.getDefaultDragSource();
+        dragSource.createDefaultDragGestureRecognizer( treeModel, DnDConstants.ACTION_COPY_OR_MOVE, new DragAndDropDragGestureListener() );
+        DropTarget dropTarget = new DropTarget( panelLogicalStructure, new DragAndDropDropTargetListener() );
+	}
+	
+	//[end]
+
+	
+	/**
+	 * 加载界面
+	 */
+	private void initialize() {
+		
+
+		frame = new JFrame();
+		frame.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentResized(ComponentEvent arg0) {
+				splitPane.setDividerLocation(0.86);	
+				splitPane_2.setDividerLocation(0.65);
+				
+			}
+		});
+		frame.setBounds(100, 100, 1055, 619);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(new BorderLayout(0, 0));
+		frame.getContentPane().add(timeLab, BorderLayout.SOUTH);
+		
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBackground(new Color(240, 248, 255));
+		frame.getContentPane().add(tabbedPane, BorderLayout.NORTH);
+		
+		JPanel panelToolDeploy = new JPanel();
+		panelToolDeploy.setBackground(new Color(240, 248, 255));
+		tabbedPane.addTab("\u4EFF \u771F", null, panelToolDeploy, null);
+		tabbedPane.setBackgroundAt(0, new Color(0, 153, 204));
+		panelToolDeploy.setLayout(null);
+		
+		JPanel DeploypanelFormulaBase = new JPanel();
+		DeploypanelFormulaBase.setBackground(new Color(240, 248, 255));
+		DeploypanelFormulaBase.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "\u65B9\u6848\u57FA\u672C\u4FE1\u606F", TitledBorder.CENTER, TitledBorder.BOTTOM, null, null));
+		DeploypanelFormulaBase.setBounds(10, 1, 153, 89);
+		panelToolDeploy.add(DeploypanelFormulaBase);
+		DeploypanelFormulaBase.setLayout(null);
+		
+		btnSaveFormula = new JButton("");
+		btnSaveFormula.setBounds(10, 3, 69, 55);
+		DeploypanelFormulaBase.add(btnSaveFormula);
+		btnSaveFormula.setIcon(new ImageIcon("src\\psm\\Image\\onebit_11.png"));
+    	btnSaveFormula.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) 
+			{				
+				btnSaveFormula_Action();
+			}  	
+    	});
+		
+		JLabel label_1 = new JLabel("\u4FDD\u5B58");
+		label_1.setBounds(30, 58, 36, 15);
+		DeploypanelFormulaBase.add(label_1);
+		
+		JButton button = new JButton("");
+		button.setIcon(new ImageIcon("src\\psm\\Image\\Casehistory.png"));
+		button.setBounds(75, 3, 69, 55);
+		DeploypanelFormulaBase.add(button);
+		
+		
+		JLabel label_2 = new JLabel("\u4FEE\u6539");
+		label_2.setBounds(96, 58, 36, 15);
+		DeploypanelFormulaBase.add(label_2);
+		
+		JPanel DeploypanelLogStru = new JPanel();
+		DeploypanelLogStru.setBackground(new Color(248, 248, 255));
+		DeploypanelLogStru.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "\u903B\u8F91\u7ED3\u6784", TitledBorder.CENTER, TitledBorder.BOTTOM, null, null));
+		DeploypanelLogStru.setLayout(null);
+		DeploypanelLogStru.setBounds(161, 1, 416, 89);
+		panelToolDeploy.add(DeploypanelLogStru);
+		
+		JButton button_1 = new JButton("");
+		button_1.setIcon(new ImageIcon("src\\psm\\Image\\edit_blue.png"));
+		button_1.setBounds(5, 3, 69, 55);
+		DeploypanelLogStru.add(button_1);
+		
+		JLabel label_3 = new JLabel("\u8BBE\u7F6E\u6210\u5458");
+		label_3.setBounds(16, 58, 59, 15);
+		DeploypanelLogStru.add(label_3);
+		
+		JButton button_2 = new JButton("");
+		button_2.setIcon(new ImageIcon("src\\psm\\Image\\check_purple.png"));
+		button_2.setBounds(73, 3, 69, 55);
+		DeploypanelLogStru.add(button_2);
+		
+		JLabel label_4 = new JLabel("\u8BA2\u8D2D\u5BF9\u8C61");
+		label_4.setBounds(85, 58, 59, 15);
+		DeploypanelLogStru.add(label_4);
+		
+		JButton button_3 = new JButton("");
+		button_3.setIcon(new ImageIcon("src\\psm\\Image\\delete_blue.png"));
+		button_3.setBounds(140, 3, 69, 55);
+		DeploypanelLogStru.add(button_3);
+		
+		JButton button_4 = new JButton("");
+		button_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//do_this_windowActivated(e);
+			}
+		});
+		
+		button_4.setIcon(new ImageIcon("src\\psm\\Image\\12.png"));
+		button_4.setBounds(207, 3, 69, 55);
+		DeploypanelLogStru.add(button_4);
+		
+		JButton button_5 = new JButton("");
+		button_5.setIcon(new ImageIcon("src\\psm\\Image\\delete_gray.png"));
+		button_5.setBounds(273, 3, 69, 55);
+		DeploypanelLogStru.add(button_5);
+		
+		JButton button_6 = new JButton("");
+		button_6.setIcon(new ImageIcon("src\\psm\\Image\\13.png"));
+		button_6.setBounds(340, 3, 69, 55);
+		DeploypanelLogStru.add(button_6);
+		
+		JLabel label_7 = new JLabel("\u53D6\u6D88\u5BF9\u8C61");
+		label_7.setBounds(154, 58, 59, 15);
+		DeploypanelLogStru.add(label_7);
+		
+		JLabel label_8 = new JLabel("\u8BA2\u8D2D\u4EA4\u4E92");
+		label_8.setBounds(217, 58, 59, 15);
+		DeploypanelLogStru.add(label_8);
+		
+		JLabel label_9 = new JLabel("\u53D6\u6D88\u4EA4\u4E92");
+		label_9.setBounds(283, 58, 59, 15);
+		DeploypanelLogStru.add(label_9);
+		
+		JLabel label_10 = new JLabel("\u6210\u5458\u7EC4\u5408");
+		label_10.setBounds(350, 58, 55, 15);
+		DeploypanelLogStru.add(label_10);
+		
+		JPanel DeploypanelCheckPub = new JPanel();
+		DeploypanelCheckPub.setBackground(new Color(248, 248, 255));
+		DeploypanelCheckPub.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "\u65B9\u6848\u6821\u9A8C\u4E0E\u53D1\u5E03", TitledBorder.CENTER, TitledBorder.BOTTOM, null, null));
+		DeploypanelCheckPub.setLayout(null);
+		DeploypanelCheckPub.setBounds(575, 1, 153, 89);
+		panelToolDeploy.add(DeploypanelCheckPub);
+		
+		JButton button_7 = new JButton("");
+		button_7.setIcon(new ImageIcon("src\\psm\\Image\\15.png"));
+		button_7.setBounds(5, 3, 69, 55);
+		DeploypanelCheckPub.add(button_7);
+		
+		JLabel label_5 = new JLabel("\u65B9\u6848\u6821\u9A8C");
+		label_5.setBounds(20, 58, 59, 15);
+		DeploypanelCheckPub.add(label_5);
+		
+		JButton btnPublish = new JButton("");
+		btnPublish.setIcon(new ImageIcon("src\\psm\\Image\\fabu.png"));
+		btnPublish.setBounds(74, 3, 69, 55);
+		DeploypanelCheckPub.add(btnPublish);
+		btnPublish.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) 
+			{
+				btnPublish_Action();
+			}
+		});
+		
+		JLabel label_6 = new JLabel("\u65B9\u6848\u53D1\u5E03");
+		label_6.setBounds(84, 58, 59, 15);
+		DeploypanelCheckPub.add(label_6);
+		
+		JPanel panelToolEdit = new JPanel();
+		tabbedPane.addTab("\u7F16 \u8F91", null, panelToolEdit, null);
+		panelToolEdit.setLayout(null);
+		
+		JPanel EditpanelClipboard = new JPanel();
+		EditpanelClipboard.setBorder(new TitledBorder(null, "\u526A\u8D34\u677F", TitledBorder.CENTER, TitledBorder.BOTTOM, null, null));
+		EditpanelClipboard.setLayout(null);
+		EditpanelClipboard.setBounds(10, 1, 122, 89);
+		panelToolEdit.add(EditpanelClipboard);
+		
+		JButton button_9 = new JButton("");
+		button_9.setIcon(new ImageIcon(FrmMain.class.getResource("/psm/Image/17.png")));
+		button_9.setBounds(10, 3, 69, 55);
+		EditpanelClipboard.add(button_9);
+		
+		JButton button_10 = new JButton("");
+		button_10.setIcon(new ImageIcon(FrmMain.class.getResource("/psm/Image/CutHS.png")));
+		button_10.setBounds(78, 3, 36, 27);
+		EditpanelClipboard.add(button_10);
+		
+		JButton button_11 = new JButton("");
+		button_11.setIcon(new ImageIcon(FrmMain.class.getResource("/psm/Image/CopyHS.png")));
+		button_11.setBounds(78, 30, 36, 28);
+		EditpanelClipboard.add(button_11);
+		
+		JLabel label_11 = new JLabel("\u7C98\u8D34");
+		label_11.setBounds(30, 58, 44, 15);
+		EditpanelClipboard.add(label_11);
+		
+		JLabel label_12 = new JLabel("\u590D\u5236");
+		label_12.setBounds(73, 58, 54, 15);
+		EditpanelClipboard.add(label_12);
+		
+		JPanel panelToolView = new JPanel();
+		tabbedPane.addTab("\u89C6 \u56FE", null, panelToolView, null);
+		panelToolView.setLayout(null);
+		
+		JPanel ViewpanelModelManage = new JPanel();
+		ViewpanelModelManage.setBorder(new TitledBorder(null, "\u6A21\u578B\u7BA1\u7406\u5668", TitledBorder.CENTER, TitledBorder.BOTTOM, null, null));
+		ViewpanelModelManage.setLayout(null);
+		ViewpanelModelManage.setBounds(10, 1, 107, 89);
+		panelToolView.add(ViewpanelModelManage);
+		
+		JButton button_12 = new JButton("");
+		button_12.setIcon(new ImageIcon(FrmMain.class.getResource("/psm/Image/2.png")));
+		button_12.setBounds(10, 3, 85, 52);
+		ViewpanelModelManage.add(button_12);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"\u6A21\u578B\u4E0A\u4F20", "\u6A21\u578B\u4E0B\u8F7D"}));
+		comboBox.setBounds(10, 54, 85, 19);
+		ViewpanelModelManage.add(comboBox);
+		
+		JPanel panelToolTools = new JPanel();
+		tabbedPane.addTab("\u5DE5 \u5177", null, panelToolTools, null);
+		panelToolTools.setLayout(null);
+		
+		JPanel ToolpanelStyle = new JPanel();
+		ToolpanelStyle.setBorder(new TitledBorder(null, "\u754C\u9762\u98CE\u683C", TitledBorder.CENTER, TitledBorder.BOTTOM, null, null));
+		ToolpanelStyle.setLayout(null);
+		ToolpanelStyle.setBounds(203, 1, 103, 89);
+		panelToolTools.add(ToolpanelStyle);
+		
+		JButton button_13 = new JButton("");
+		button_13.setIcon(new ImageIcon(FrmMain.class.getResource("/psm/Image/changestyle.png")));
+		button_13.setBounds(7, 3, 85, 52);
+		ToolpanelStyle.add(button_13);
+		
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setBounds(7, 54, 85, 19);
+		ToolpanelStyle.add(comboBox_1);
+		
+		JPanel ToolpanelSet = new JPanel();
+		ToolpanelSet.setBorder(new TitledBorder(null, "\u8BBE\u7F6E", TitledBorder.CENTER, TitledBorder.BOTTOM, null, null));
+		ToolpanelSet.setLayout(null);
+		ToolpanelSet.setBounds(110, 1, 96, 89);
+		panelToolTools.add(ToolpanelSet);
+		
+		JButton button_14 = new JButton("");
+		button_14.setIcon(new ImageIcon(FrmMain.class.getResource("/psm/Image/peizhi.png")));
+		button_14.setBounds(7, 3, 85, 52);
+		ToolpanelSet.add(button_14);
+		
+		JComboBox comboBox_2 = new JComboBox();
+		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"\u8BBE\u7F6E\u9884\u6848", "\u8BBE\u7F6E\u6A21\u578B\u5E93"}));
+		comboBox_2.setBounds(7, 54, 85, 19);
+		ToolpanelSet.add(comboBox_2);
+		
+		JPanel ToolpanelProduce = new JPanel();
+		ToolpanelProduce.setBorder(new TitledBorder(null, "\u751F\u6210", TitledBorder.CENTER, TitledBorder.BOTTOM, null, null));
+		ToolpanelProduce.setLayout(null);
+		ToolpanelProduce.setBounds(10, 1, 103, 89);
+		panelToolTools.add(ToolpanelProduce);
+		
+		JButton button_15 = new JButton("");
+		button_15.setIcon(new ImageIcon(FrmMain.class.getResource("/psm/Image/shangchuan.png")));
+		button_15.setBounds(10, 3, 85, 52);
+		ToolpanelProduce.add(button_15);
+		
+		JComboBox comboBox_3 = new JComboBox();
+		comboBox_3.setModel(new DefaultComboBoxModel(new String[] {"\u751F\u6210FOM", "\u751F\u6210\u9884\u6848"}));
+		comboBox_3.setBounds(10, 54, 85, 19);
+		ToolpanelProduce.add(comboBox_3);
+		
+		JToolBar panelToolHelp = new JToolBar();
+		
+		panelToolHelp.setFloatable(false);
+		
+		tabbedPane.addTab("\u5E2E \u52A9", null, panelToolHelp, null);
+		
+		JPanel HelppanelHelp = new JPanel();
+		panelToolHelp.add(HelppanelHelp);
+		HelppanelHelp.setLayout(null);
+		
+		JPanel panel_17 = new JPanel();
+		panel_17.setBorder(new TitledBorder(null, "\u5E2E\u52A9", TitledBorder.CENTER, TitledBorder.BOTTOM, null, null));
+		panel_17.setLayout(null);
+		panel_17.setBounds(10, 1, 103, 87);
+		HelppanelHelp.add(panel_17);
+		
+		JButton button_16 = new JButton("");
+		button_16.setIcon(new ImageIcon(FrmMain.class.getResource("/psm/Image/onebit_37.png")));
+		button_16.setBounds(10, 3, 85, 50);
+		panel_17.add(button_16);
+		
+		JComboBox comboBox_4 = new JComboBox();
+		comboBox_4.setModel(new DefaultComboBoxModel(new String[] {"\u67E5\u770B\u5E2E\u52A9", "\u5173\u4E8ESSM"}));
+		comboBox_4.setBounds(10, 52, 85, 19);
+		panel_17.add(comboBox_4);
+		
+		
+		splitPane.setOneTouchExpandable(true);
+		frame.getContentPane().add(splitPane, BorderLayout.CENTER);
+		
+		JSplitPane splitPane_1 = new JSplitPane();
+		splitPane_1.setOneTouchExpandable(true);
+		splitPane.setLeftComponent(splitPane_1);
+		
+		JPanel treeFormulaPanel = new JPanel();
+		splitPane_1.setLeftComponent(treeFormulaPanel);
+		treeFormulaPanel.setLayout(new BorderLayout(0, 0));
+		
+		JLabel FormuLable = new JLabel("\u65B9\u6848\u8D44\u6E90\u7BA1\u7406\u5668");
+		FormuLable.setBackground(new Color(135, 206, 250));
+		treeFormulaPanel.add(FormuLable, BorderLayout.NORTH);
+		
+		
+		treeFormulaPanel.add(treeFormula, BorderLayout.CENTER);
+		
+		JTabbedPane tabbedPaneFormula = new JTabbedPane(JTabbedPane.TOP);
+		splitPane_1.setRightComponent(tabbedPaneFormula);
+		panelFormula.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentResized(ComponentEvent e) {
+				int w=panelFormula.getWidth();
+				int h=panelFormula.getHeight();
+				panelFormulaBasicInfo.setLocation((w-574)/2, (h-369)/2);
+				
+				
+				
+			}
+		});
+		
+		
+		panelFormula.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panelFormula.setBackground(new Color(240, 248, 255));
+		tabbedPaneFormula.addTab("\u65B9\u6848\u57FA\u672C\u4FE1\u606F", null, panelFormula, null);
+		panelFormulaBasicInfo.setBounds(30, 28, 574, 369);
+		panelFormula.setLayout(null);
+		
+		//
+		//方案基本信息
+		//
+		
+		panelFormulaBasicInfo.setBackground(new Color(240, 248, 255));
+		panelFormulaBasicInfo.setBorder(new TitledBorder(null, "\u65B9\u6848\u57FA\u672C\u4FE1\u606F", TitledBorder.CENTER, TitledBorder.TOP, null, null));
+		panelFormula.add(panelFormulaBasicInfo);
+		panelFormulaBasicInfo.setLayout(null);
+		
+		
+		JLabel labFormulaName = new JLabel("\u65B9\u6848\u540D\u79F0\uFF1A");
+		labFormulaName.setBounds(21, 40, 77, 15);
+		panelFormulaBasicInfo.add(labFormulaName);
+		
+		JLabel labFormulaAuthor = new JLabel("\u65B9\u6848\u4F5C\u8005\uFF1A");
+		labFormulaAuthor.setBounds(21, 84, 77, 15);
+		panelFormulaBasicInfo.add(labFormulaAuthor);
+		
+		JLabel labFormulaGoal = new JLabel("\u65B9\u6848\u76EE\u7684:");
+		labFormulaGoal.setBounds(21, 128, 77, 15);
+		panelFormulaBasicInfo.add(labFormulaGoal);
+		
+		JLabel labFormulaOutline = new JLabel("\u65B9\u6848\u6982\u8FF0\uFF1A");
+		labFormulaOutline.setBounds(21, 185, 77, 15);
+		panelFormulaBasicInfo.add(labFormulaOutline);
+		JTFFormulaName.setBounds(92, 37, 171, 21);
+		panelFormulaBasicInfo.add(JTFFormulaName);
+		JTFFormulaName.setColumns(10);
+		JTFFormulaName.getDocument().addDocumentListener(new DocumentListener(){
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+			}
+			@Override
+			public void insertUpdate(DocumentEvent arg0) {
+				panelFormulaName_Action();
+			}
+			@Override
+			public void removeUpdate(DocumentEvent arg0) {
+				panelFormulaName_Action();
+			}			
+		});
+
+		
+		JTFFormulaAuthor = new JTextField();
+		JTFFormulaAuthor.setBounds(92, 81, 171, 21);
+		JTFFormulaAuthor.setColumns(10);
+		JTFFormulaAuthor.getDocument().addDocumentListener(new DocumentListener(){
+			@Override
+			public void changedUpdate(DocumentEvent arg0) {			
+			}
+			@Override
+			public void insertUpdate(DocumentEvent arg0) {
+				panelFormulaAuthor_Action();			
+			}
+			@Override
+			public void removeUpdate(DocumentEvent arg0) {
+				panelFormulaAuthor_Action();			
+			}			
+		});
+		panelFormulaBasicInfo.add(JTFFormulaAuthor);
+				
+		JTFFormulaGoal = new JTextField();
+		JTFFormulaGoal.setBounds(92, 125, 171, 21);
+		JTFFormulaGoal.setColumns(10);
+		JTFFormulaGoal.getDocument().addDocumentListener(new DocumentListener(){
+			@Override
+			public void changedUpdate(DocumentEvent arg0) {			
+			}
+			@Override
+			public void insertUpdate(DocumentEvent arg0) {
+				panelFormulaGoal_Action();			
+			}
+			@Override
+			public void removeUpdate(DocumentEvent arg0) {
+				panelFormulaGoal_Action();			
+			}			
+		});
+		panelFormulaBasicInfo.add(JTFFormulaGoal);
+		
+		JTFFormulaOutline = new JTextArea();
+		JTFFormulaOutline.setLineWrap(true);
+		JTFFormulaOutline.setBounds(92, 185, 456, 163);
+		JTFFormulaOutline.setBorder(BorderFactory.createLineBorder(Color.gray,1));
+		JTFFormulaOutline.setColumns(10);
+		JTFFormulaOutline.getDocument().addDocumentListener(new DocumentListener(){
+			@Override
+			public void changedUpdate(DocumentEvent arg0) {			
+			}
+			@Override
+			public void insertUpdate(DocumentEvent arg0) {
+				panelFormulaOutline_Action();			
+			}
+			@Override
+			public void removeUpdate(DocumentEvent arg0) {
+				panelFormulaOutline_Action();			
+			}			
+		});
+		panelFormulaBasicInfo.add(JTFFormulaOutline);
+		
+		JLabel labFormulaScale = new JLabel("\u65B9\u6848\u89C4\u6A21\uFF1A");
+		labFormulaScale.setBounds(300, 40, 67, 15);
+		panelFormulaBasicInfo.add(labFormulaScale);
+		
+		JTFFormulaScale = new JTextArea();
+		JTFFormulaScale.setFont(new Font("Monospaced", Font.PLAIN, 13));
+		JTFFormulaScale.setLineWrap(true);
+		JTFFormulaScale.setBorder(BorderFactory.createLineBorder(Color.gray,1));
+		JTFFormulaScale.setBounds(300, 65, 248, 81);
+		JTFFormulaScale.getDocument().addDocumentListener(new DocumentListener(){
+			@Override
+			public void changedUpdate(DocumentEvent arg0) {			
+			}
+			@Override
+			public void insertUpdate(DocumentEvent arg0) {
+				panelFormulaScale_Action();			
+			}
+			@Override
+			public void removeUpdate(DocumentEvent arg0) {
+				panelFormulaScale_Action();			
+			}			
+		});
+		panelFormulaBasicInfo.add(JTFFormulaScale);
+		JTFFormulaScale.setColumns(10);
+		//
+		//
+		//
+		
+		
+		
+		tabbedPaneFormula.addTab("\u65B9\u6848\u903B\u8F91\u7ED3\u6784", null, panelLogicalStructure, null);
+		panelLogicalStructure.setLayout(null);
+		splitPane_1.setDividerLocation(160);
+		
+		JPanel treeModelPanel = new JPanel();
+		splitPane.setRightComponent(treeModelPanel);
+		treeModelPanel.setLayout(new BorderLayout(0, 0));
+		
+		JLabel Modellabel = new JLabel("\u6A21\u578B\u8D44\u6E90\u7BA1\u7406\u5668");
+		treeModelPanel.add(Modellabel, BorderLayout.NORTH);
+		
+		
+		splitPane_2.setDividerLocation(300);
+		splitPane_2.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		treeModelPanel.add(splitPane_2, BorderLayout.CENTER);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		splitPane_2.setRightComponent(scrollPane);
+		table=new JTable();
+		JTabbedPane tabbedPane_2 = new JTabbedPane(JTabbedPane.TOP);
+		scrollPane.setViewportView(tabbedPane_2);		
+		tabbedPane_2.addTab("\u5C5E \u6027", null, table, null);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		splitPane_2.setLeftComponent(scrollPane_1);
+		
+		
+		scrollPane_1.setViewportView(treeModel);
+		splitPane.setDividerLocation(800);
+	}
+}
+
+
+
+
+
+

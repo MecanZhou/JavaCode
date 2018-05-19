@@ -1,0 +1,118 @@
+<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Mecan的基本资料</title>
+	<style type="text/css">
+		*{margin:0;padding: 0;}
+		body{height: 100%;width: 100%;
+			background: url(images/bg.jpg) no-repeat;
+			margin: 0 auto;padding: 0;font-family:"微软雅黑";font-size: 12px;
+			}
+		#header{margin: 0;padding: 0;
+			height: 100px;width: 100%;
+			background-color: #666666;opacity: 0.7;
+			color: #FF9933;border-style:solid ;border-color: #FF9933;
+		}
+		#time, h1{margin: 10px 0;padding:0;
+		}
+		#main{margin: 20px auto;padding: 0;position: relative;
+			height: 500px;width: 100%;color:#FFF;opacity:0.7;		
+		}
+		#text{margin: 0 auto;padding: 0;background-color: #666666;
+			width: 500px;height: 500px;border-style:solid ;border-color: #FF9933;
+			position: absolute;margin-left: 200px;
+			color:#FFF;font-family:"微软雅黑";font-size:16px;clear:both;
+		}
+		#pic{margin: 0;padding: 0;background-color: #666666;
+			width: 500px;height: 500px;border-style:solid ;border-color: #FF9933;
+			position: absolute;margin-left: 700px;
+		}
+		#text ul li{margin:15px 0;padding :0;
+			background-color:#FF9933;
+			}
+		#pic ul {
+			list-style:none;
+		}
+		#pic li {
+			float:left;
+			list-style:none;
+		}	
+		#img_1 {position:absolute;margin-top:50px;margin-left:50px;
+				width:200px;height:300px;border:1px solid #FF9933;
+				background: url(images/QQ.jpg);
+				}
+		#img_2 {position:absolute;margin-top:50px;margin-left:250px;
+				width:220px;height:300px;border:1px solid #FF9933;
+				background: url(images/WEIBO.png);
+		}
+		#info_1 {position:absolute;margin-left:50px;margin-top:400px;
+				font-size:20px;width:200px;height:60px;text-align:center;
+		}
+		#info_2 {position:absolute;margin-left:250px;margin-top:400px;
+				font-size:20px;width:200px;height:60px;text-align:center;
+		}
+		#footer{text-align:center;background-color:#666666;opacity:0.4;
+				clear:both;padding:10px 10px;margin:0 auto;color: black;
+		}
+	</style>
+	
+	<script type="text/javascript"> 
+		function disptime(){
+			var today = new Date(); 
+			var hh = today.getHours();
+			var mm = today.getMinutes();
+			var ss = today.getSeconds();
+			/*设置div的内容为当前时间*/
+			document.getElementById("time").innerHTML=hh+":"+mm+":"+ss;
+			//1000ms调用一次
+			var myTime=setTimeout("disptime()",1000);
+		}
+
+	</script>
+	</head>
+
+	<body onLoad="disptime()">
+		<center>
+			<div id="header">
+				<h1 align="center">Mecan的个人资料</h>
+				<p id="time"></p>
+			</div>
+			<div id="main">
+				<div id="text">
+                	<ul><li><strong>基本资料</strong>
+                    	<ul><li>姓名：周茂根</li>
+                        	<li>生日：19950823</li>
+                            <li>星座：天秤座</li>
+                            <li>血型：B型</li>
+                        </ul>
+                    </li>
+                    	<li><strong>兴趣爱好</strong>
+                        <ul><li>电影</li>
+                        	<li>唱歌</li>
+                            <li>羽毛球</li>
+                        </ul>
+                    </li>
+                    	<li><strong>社交账号</strong>
+                        <ul><li>手机号码：18162350709</li>
+                        	<li>腾讯QQ：1059898830</li>
+                            <li>新浪微博：Zhou_MG</li>
+                        </ul>
+                    </li>
+                    </ul>
+                </div>
+				<div id="pic">
+                	<ul><li><div id="img_1"></div></li>
+            			<li><div id="img_2"></div></li>
+                    </ul>
+                    <li><div id="info_1"><p>扫描添加QQ</p></div></li>
+            		<li><div id="info_2"><p>扫描关注微博</p></div></li>
+                </div>
+			</div>
+			<div id="footer">
+				<p>江汉大学数学与计算机科学学院</p>
+				<p>HTML/CSS/JavaScript期末大作业</p>
+				<p>&copy;Copyright&nbsp;&nbsp;&nbsp;&nbsp;学号：142208100119&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;姓名：周茂根&nbsp;&nbsp;</p>
+			</div>
+		</center>
+	</body>
+</html>

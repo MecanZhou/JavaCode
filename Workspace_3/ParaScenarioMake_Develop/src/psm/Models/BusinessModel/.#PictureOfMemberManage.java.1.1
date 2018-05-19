@@ -1,0 +1,84 @@
+package psm.Models.BusinessModel;
+
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
+import psm.Models.DataModel.PictureOfMember;
+
+import sun.java2d.loops.DrawLine;
+
+public class PictureOfMemberManage {
+	
+	public List<PictureOfMember> pOMList=new ArrayList<PictureOfMember>();
+	
+	public List<PictureOfMember> POMList;
+	
+	/**
+     * 设置成员图片属性
+     */
+	public void setPOMList(List<PictureOfMember> POMList_){
+		POMList=POMList_;
+	}
+	
+	public List<PictureOfMember> getPOMLlst(){
+		return POMList;
+	}
+	
+	public void SetIcon(JLabel label1, String s) 
+	{
+		if(s.equals("虚拟模型"))
+		{
+			label1.setIcon(new ImageIcon(DrawLine.class.getResource("/psm/Image/虚拟模型.jpg")));
+		}
+		else if(s.equals("组合成员"))
+		{
+			label1.setIcon(new ImageIcon(DrawLine.class.getResource("/psm/Image/组合成员.png")));
+		}
+		else if(s.equals("系统级"))
+		{
+			label1.setIcon(new ImageIcon(DrawLine.class.getResource("/psm/Image/1.png")));
+		}
+		else if(s.equals("子系统级"))
+		{
+			label1.setIcon(new ImageIcon(DrawLine.class.getResource("/psm/Image/1.png")));
+		}
+		else if(s.equals("事件发生器"))
+		{
+			label1.setIcon(new ImageIcon(DrawLine.class.getResource("/psm/Image/事件发生器.png")));
+		}
+		else if(s.equals("控制器"))
+		{
+			label1.setIcon(new ImageIcon(DrawLine.class.getResource("/psm/Image/控制器.png")));
+		}
+		else if(s.equals("执行器"))
+		{
+			label1.setIcon(new ImageIcon(DrawLine.class.getResource("/psm/Image/执行器.png")));
+		}
+		else if(s.equals("被控对象"))
+		{
+			label1.setIcon(new ImageIcon(DrawLine.class.getResource("/psm/Image/被控对象.png")));
+		}
+
+		
+		
+	}
+
+
+	public PictureOfMember SelectPom(MouseEvent e){
+		for(PictureOfMember pom : pOMList){
+			 if ((e.getX() >= pom.LogicalLocation.getX() && e.getX() <= pom.LogicalLocation.getX() + pom.ImageWidth
+                     && e.getY() >= pom.LogicalLocation.getY() && e.getY() <= pom.LogicalLocation.getY() + pom.ImageHeight))
+                    {
+                        return pom;
+                    }
+		}
+		return null;
+	}
+	
+	
+	
+}

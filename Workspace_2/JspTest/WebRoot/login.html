@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>个人主页登录</title>
+
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="this is my page">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<style type="text/css">
+<!--
+body {
+	margin: 0;
+	padding: 0;
+	background-image: url(images/bg.jpg);
+	height: 100%;
+	width: 100%;
+	font-family: "微软雅黑";
+}
+
+h2 {
+	margin: 20px 20px;
+	padding: 20px 0;
+	color: #FF9933;
+	text-align: center;
+}
+
+#text {
+	margin: 10px auto;
+	padding: 5px 5px;
+	border: hidden;
+	width: 200px;
+	height: 20px;
+}
+
+#button {
+	margin: 30px 30px;
+	padding: 10px 10px;
+	border: none;
+	color: #FFFFFF;
+	background-color: #FF9933;
+}
+
+#login {
+	margin: 100px 0;
+	padding: 0;
+	height: 300px;
+	width: 100%;
+	background-color: #666666;
+	text-align: center;
+	font-family: "微软雅黑";
+	font-size: 18px;
+	color: #FFFFFF;
+	opacity: 0.4;
+}
+
+#footer {
+	text-align: center;
+	background-color: #666666;
+	opacity: 0.4;
+	clear: both;
+	padding: 20px 10px;
+	margin: auto;
+}
+-->
+</style>
+<script language="JavaScript" type="text/javascript">
+		function checkForm(form){
+		if(form.username.value=="")
+			{alert("请输入用户名");
+			return false;
+			}
+		if(form.password.value=="")
+			{alert("请输入密码");
+			return false;
+			}
+			return ture;
+		}
+	</script>
+</head>
+
+<body>
+
+	<form action="Login" method="post" onsubmit="return checkForm(this)">
+		<div id="login">
+			<h2>登录Mecan的个人中心</h2>
+			UserName：<input id="text" type="text" name="username" />
+			&nbsp;Password：<input id="text" type="password" name="password" /> 
+			<input type="submit" value="Submit" id="button" /> 
+			<input type="reset"	value="Reset" id="button" />
+		</div>
+		<div id="footer">
+			<p>江汉大学数学与计算机科学学院</p>
+			<p>HTML/CSS/JavaScript期末大作业</p>
+			<p>&copy;Copyright&nbsp;&nbsp;&nbsp;&nbsp;学号：142208100119&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;姓名：周茂根&nbsp;&nbsp;</p>
+		</div>
+	</form>
+
+</body>
+</html>

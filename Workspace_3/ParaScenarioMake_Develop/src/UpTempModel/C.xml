@@ -1,0 +1,22 @@
+<psm.Models.DataModel.Model>
+  <Muid>93</Muid>
+  <Model_name>C</Model_name>
+  <Model_version>3</Model_version>
+  <Publish_time>2015-10-30</Publish_time>
+  <Modified_time>2015-10-31</Modified_time>
+  <Development_languages></Development_languages>
+  <Development_tools></Development_tools>
+  <Model_intro></Model_intro>
+  <Model_sponsor></Model_sponsor>
+  <Hava_src>false</Hava_src>
+  <Hava_doc>false</Hava_doc>
+  <Is_verified>false</Is_verified>
+  <Target_access>public</Target_access>
+  <Model_category>1</Model_category>
+  <Model_vid>99</Model_vid>
+  <Model_target></Model_target>
+  <Model_catList/>
+  <Model_desc_paraList/>
+  <Model_para_infoList/>
+  <Model_interaction_infoList/>
+</psm.Models.DataModel.Model>

@@ -1,0 +1,59 @@
+@charset "gb2312";
+/* CSS Document */
+
+* {
+	margin:0;
+	padding:0;
+}
+body {	
+	background: url(../images/bg.jpg) no-repeat;
+	
+}
+#top{
+	margin:auto;
+}
+#person{	
+	text-align:center;
+	padding:0;
+	margin:auto;
+	background-color:#666666;
+	opacity:0.4;
+	clear:both;
+}
+
+#main {	
+	text-align:center;
+	padding:20px 0 0 0;
+	margin:auto;
+	clear:both;
+	font-family:Î¢ÈíÑÅºÚ;
+	font-size:16px;
+	color:#FFF;
+	border:none;
+}
+
+#main table{	
+	text-align:center;
+	margin:auto;
+	border-color:#FFF;
+	padding:50px 50px;
+}
+
+#main table td{
+	margin:auto;
+	border-color:#FFF;
+	padding:0 100px;
+}
+
+#main h1{
+	margin:auto;
+	padding:20px 0;
+}
+#footer{
+	text-align:center;
+	background-color:#666666;
+	opacity:0.4;
+	clear:both;
+	padding:20px 10px;
+	margin:auto;
+}
