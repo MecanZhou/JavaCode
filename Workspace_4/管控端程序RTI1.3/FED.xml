@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FED>
+<interactionclass>
+     <Start>
+         <parameter>SMessage</parameter>           
+     </Start>
+     <Pause>
+         <parameter>PMessage</parameter>           
+     </Pause>
+     <Continue>
+         <parameter>CMessage</parameter>           
+     </Continue>
+     <Quit>
+         <parameter>QMessage</parameter>           
+     </Quit>
+     <Refresh>
+         <parameter>RMessage</parameter>           
+     </Refresh>
+     <ReplyStart>
+         <parameter>RSMessage</parameter>           
+     </ReplyStart>
+     <ReplyPause>
+         <parameter>RPMessage</parameter>           
+     </ReplyPause>
+     <ReplyContinue>
+         <parameter>RCMessage</parameter>           
+     </ReplyContinue>
+     <ReplyRefresh>
+         <parameter>RRMessage</parameter>           
+     </ReplyRefresh>
+     <ReplyQuit>
+	<parameter>RQMessage</parameter>
+     </ReplyQuit>
+     <TimerUpdate>
+	<parameter>TMessage</parameter>
+     </TimerUpdate>
+     <ReplyTimerUpdate>
+	<parameter>RTMessage</parameter>
+     </ReplyTimerUpdate>
+     <DelayUpdate>
+	<parameter>DMessage</parameter>
+     </DelayUpdate>
+     <ReplyDelayUpdate>
+	<parameter>RDMessage</parameter>
+     </ReplyDelayUpdate>
+</interactionclass>
+<objectclass>
+	<Model1>
+		<attribute1>isOutput</attribute1>
+	</Model1>
+	<Model2>
+		<attribute1>isOutput</attribute1>
+	</Model2>
+	<Model3>
+		<attribute1>isOutput</attribute1>
+	</Model3>
+	<Model4>
+		<attribute1>isOutput</attribute1>
+	</Model4>
+	<Model5>
+		<attribute1>isOutput</attribute1>
+	</Model5>
+	<Model6>
+		<attribute1>isOutput</attribute1>
+	</Model6>
+</objectclass>
+
+
+</FED>

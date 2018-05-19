@@ -1,0 +1,8 @@
+server
+172.16.73.200
+user
+admin
+password
+admin
+path
+E:\ftp

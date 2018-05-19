@@ -1,0 +1,6 @@
+ServerIP
+172.16.73.110
+username
+SCENARIODB
+password
+root

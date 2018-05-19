@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FED>
+<interactionclass>
+     <Start>
+         <parameter>SMessage</parameter>           
+     </Start>
+     <Pause>
+         <parameter>PMessage</parameter>           
+     </Pause>
+     <ModifyPara>
+          <parameter>MPMessage</parameter>
+     </ModifyPara>
+     <Continue>
+         <parameter>CMessage</parameter>           
+     </Continue>
+     <Quit>
+         <parameter>QMessage</parameter>           
+     </Quit>
+     <Refresh>
+         <parameter>RMessage</parameter>           
+     </Refresh>
+     <ReplyStart>
+         <parameter>RSMessage</parameter>           
+     </ReplyStart>
+     <ReplyPause>
+         <parameter>RPMessage</parameter>           
+     </ReplyPause>
+     <ReplyContinue>
+         <parameter>RCMessage</parameter>           
+     </ReplyContinue>
+     <ReplyRefresh>
+         <parameter>RRMessage</parameter>           
+     </ReplyRefresh>
+</interactionclass>
+<objectclass>
+     <Model1>
+         <attribute1>isOutput</attribute1>
+         <attribute1>isOutput1</attribute1>
+     </Model1>
+     <Model2>
+         <attribute1>isInit</attribute1>                 
+     </Model2>
+     <Model3>
+         <attribute1>isInit</attribute1>              
+     </Model3>
+</objectclass>
+
+</FED>

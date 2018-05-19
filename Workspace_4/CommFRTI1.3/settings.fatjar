@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Sun Sep 10 19:01:11 CST 2000
+onejar.license.required=false
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=CommFRTI1.3.jar
+manifest.mergeall=true
+manifest.mainclass=Member
+manifest.file=<createnew>
+jarname.isextern=false
+onejar.expand=
+excludes=
+includes=

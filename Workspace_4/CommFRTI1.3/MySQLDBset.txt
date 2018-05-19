@@ -1,0 +1,8 @@
+ServerIP
+172.16.73.110
+username
+root
+password
+root
+database
+data_analysis
